@@ -18,26 +18,6 @@ app.get('/', (request, response) => {
   response.render('index');
 });
 
-app.get('/books', (request, response) => {
-  response.render('books');
-});
-
-app.get('/books:id', (request, response) => {
-  response.render('books');
-});
-
-app.put('/books:id', (request, response) => {
-  response.render('books');
-});
-
-app.delete('/books:id', (request, response) => {
-  response.render('books');
-});
-
-app.post('/books', (request, response) => {
-  response.render('books');
-});
-
 const port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log(`http://localhost:${port}`);
