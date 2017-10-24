@@ -15,7 +15,7 @@ app.set('view engine', 'html');
 
 
 app.get('/', (request, response) => {
-  response.render('index')
+  response.render('index');
 });
 
 app.get('/books', (request, response) => {
@@ -40,5 +40,5 @@ app.post('/books', (request, response) => {
 
 const port = process.env.PORT || 3000
 app.listen(port, () => {
-  console.log(`http://localhost:${port}`)
-})
+  console.log(`http://localhost:${port}`);
+});
