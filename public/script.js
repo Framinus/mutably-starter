@@ -23,8 +23,28 @@ $(document).ready(function () {
       .catch(console.error);
   };
 
-$('.create-button').on('click', createBook);
+  const listBooks = (event) => {
+    event.preventDefault();
+    fetch('https://mutably.herokuapp.com/books', {
+      method: 'GET',
+      // headers: {
+      //   'Accept': 'application/json, text/plain',
+      //   'Content-type': 'application/json',
+      // },
+    })
+      .then(response => response.json())
+      .then((booklist) => {
+        console.log(booklist.books);
+        // everything above this point works
+        booklist.books.map((book) => {
+          $('.list-group').append(`<li><img src="${book.image}"> "title: ${book.title} author: ${book.author} release date: ${book.releaseDate} </li>`);
+        });
+      })
+      .catch(console.error);
+  };
 
+$('.create-button').on('click', createBook);
+$('.booklist').on('click', listBooks);
 
 
 
