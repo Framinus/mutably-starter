@@ -93,7 +93,7 @@ $(document).ready(function () {
     })
       .then(response => response.json())
       .then(() => {
-        $('li').remove()
+        $('li').remove();
         $('.alert-success').show();
       })
       .catch(console.error);
