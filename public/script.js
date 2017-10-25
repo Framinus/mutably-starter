@@ -35,18 +35,55 @@ $(document).ready(function () {
       .then(response => response.json())
       .then((booklist) => {
         console.log(booklist.books);
-        // everything above this point works
         booklist.books.map((book) => {
-          $('.list-group').append(`<li><img src="${book.image}"> "title: ${book.title} author: ${book.author} release date: ${book.releaseDate} </li>`);
+          $('.list-group').append(`
+            <li>
+            <img class="book-image" src="${book.image}">
+            <span class="title-edit">
+              <button type="button" class="edit-btn">Edit</button>
+               title: ${book.title}</span>
+               <span class="edit-save">
+                 <button type="button" class="save-btn">Save</button>
+                 <input class="save-title" type="text" placeholder="${book.title}">
+            <span class="book-info"> author: ${book.author}
+              release date: ${book.releaseDate}
+            </span>
+            <button type="button" class="delete-btn">Delete</button>
+            </li>`);
         });
       })
       .catch(console.error);
   };
 
+  const editBook = (event) => {
+    console.log('this button is being clicked');
+    $('.title-edit').hide()
+    $('.edit-save').show()
+  }
+
+
+
+  // const saveBook = (event) => {
+  //   event.preventDefault();
+  //   const title = document.querySelector('.save-title').value
+  //   fetch('https://mutably.herokuapp.com/books/:id', {
+  //     method: 'Put',
+  //     headers: {
+  //       'Accept': 'application/json, text/plain',
+  //       'Content-type': 'application/json',
+  //     },
+  //     body: JSON.stringify({title})
+  //   })
+  //   .then(response => response.json())
+  //   .then((response) => {
+  //     console.log(response);
+  //   })
+  // }
+
 $('.create-button').on('click', createBook);
 $('.booklist').on('click', listBooks);
-
-
+// $('.save-btn').on('click', saveBook )
+$(document).on('click', '.edit-btn', editBook)
 
 
 
