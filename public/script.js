@@ -1,7 +1,7 @@
 console.log("Sanity Check: JS is working!");
+/* global $ */
 
 $(document).ready(function () {
-
   $('.alert-success').hide();
   $('.alert-danger').hide();
 
