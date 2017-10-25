@@ -42,9 +42,9 @@ $(document).ready(function () {
             <span class="title-edit">
               <button type="button" class="edit-btn">Edit</button>
                title: ${book.title}</span>
-               <span class="edit-save">
-                 <button type="button" class="save-btn">Save</button>
-                 <input class="save-title" type="text" placeholder="${book.title}">
+            <span class="edit-save">
+                 <button type="submit" class="save-btn">Save</button>
+                 <input class="save-title" data-id="${book._id}" data-title="${book.title}" data-author="${book.author}" data-image="${book.image}" data-date="${book.releaseDate}" type="text">
             <span class="book-info"> author: ${book.author}
               release date: ${book.releaseDate}
             </span>
@@ -56,38 +56,38 @@ $(document).ready(function () {
   };
 
   const editBook = (event) => {
-    console.log('this button is being clicked');
-    $('.title-edit').hide()
-    $('.edit-save').show()
+    console.log('edit button is being clicked');
+    $('.title-edit').hide();
+    $('.edit-save').show();
   }
 
+  const saveBook = (event) => {
+    event.preventDefault();
+    const id = $('.save-title').attr("data-id");
+    console.log(id);
+    const title = document.querySelector('.save-title').value;
+    const author = $('.save-title').attr("data-author");
+    console.log(author);
+    const image = $('.save-title').attr("data-image");
+    const date = $('.save-title').attr("data-date");
+    fetch(`https://mutably.herokuapp.com/books/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Accept': 'application/json, text/plain',
+        'Content-type': 'application/json',
+      },
+      body: JSON.stringify({ title, author, image, date }),
+    })
+      .then(response => response.json())
+      .then((updatedBook) => {
+        console.log(updatedBook);
+      })
+      .catch(console.error);
+  }
 
-
-  // const saveBook = (event) => {
-  //   event.preventDefault();
-  //   const title = document.querySelector('.save-title').value
-  //   fetch('https://mutably.herokuapp.com/books/:id', {
-  //     method: 'Put',
-  //     headers: {
-  //       'Accept': 'application/json, text/plain',
-  //       'Content-type': 'application/json',
-  //     },
-  //     body: JSON.stringify({title})
-  //   })
-  //   .then(response => response.json())
-  //   .then((response) => {
-  //     console.log(response);
-  //   })
-  // }
-
-$('.create-button').on('click', createBook);
-$('.booklist').on('click', listBooks);
-// $('.save-btn').on('click', saveBook )
-$(document).on('click', '.edit-btn', editBook)
-
-
-
-
-
+  $('.create-button').on('click', createBook);
+  $('.booklist').on('click', listBooks);
+  $(document).on('click', '.save-btn', saveBook);
+  $(document).on('click', '.edit-btn', editBook)
 
 });
