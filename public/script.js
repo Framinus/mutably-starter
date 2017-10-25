@@ -30,10 +30,6 @@ $(document).ready(function () {
     event.preventDefault();
     fetch('https://mutably.herokuapp.com/books', {
       method: 'GET',
-      // headers: {
-      //   'Accept': 'application/json, text/plain',
-      //   'Content-type': 'application/json',
-      // },
     })
       .then(response => response.json())
       .then((booklist) => {
@@ -109,12 +105,12 @@ $(document).ready(function () {
         'Content-type': 'application/json',
       },
     })
-    .then(response => response.json())
-    .then(() => {
-      $('li').remove()
-      $('.alert-danger').show();
-    })
-    .catch(console.error);
+      .then(response => response.json())
+      .then(() => {
+        $('li').remove()
+        $('.alert-danger').show();
+      })
+      .catch(console.error);
   }
 
   $('.create-button').on('click', createBook);
@@ -124,6 +120,5 @@ $(document).ready(function () {
   $(document).on('click', '.close-success', listBooks);
   $(document).on('click', '.delete-btn', deleteBook);
   $(document).on('click', '.fade-delete', listBooks);
-
 
 });
