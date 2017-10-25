@@ -2,6 +2,8 @@ console.log("Sanity Check: JS is working!");
 
 $(document).ready(function () {
 
+  $('.alert').hide();
+
   const createBook = (event) => {
     event.preventDefault();
     const title = document.querySelector('.modal-title').value;
@@ -39,18 +41,26 @@ $(document).ready(function () {
           $('.list-group').append(`
             <li>
             <img class="book-image" src="${book.image}">
+
             <span class="title-edit">
               <button type="button" class="edit-btn">Edit</button>
                title: ${book.title}</span>
+
             <span class="edit-save">
                  <button type="submit" class="save-btn">Save</button>
                  <input class="save-title" data-id="${book._id}" data-title="${book.title}" data-author="${book.author}" data-image="${book.image}" data-date="${book.releaseDate}" type="text">
+            </span>
             <span class="book-info"> author: ${book.author}
               release date: ${book.releaseDate}
             </span>
+
             <button type="button" class="delete-btn">Delete</button>
             </li>`);
         });
+        $('.edit-save').hide();
+        $('.title-edit').show();
+        $('.delete-btn').show();
+        $('.alert').hide();
       })
       .catch(console.error);
   };
@@ -58,6 +68,7 @@ $(document).ready(function () {
   const editBook = (event) => {
     console.log('edit button is being clicked');
     $('.title-edit').hide();
+    $('.delete-btn').hide();
     $('.edit-save').show();
   }
 
@@ -80,7 +91,7 @@ $(document).ready(function () {
     })
       .then(response => response.json())
       .then((updatedBook) => {
-        console.log(updatedBook);
+        $('.alert').show();
       })
       .catch(console.error);
   }
@@ -89,5 +100,6 @@ $(document).ready(function () {
   $('.booklist').on('click', listBooks);
   $(document).on('click', '.save-btn', saveBook);
   $(document).on('click', '.edit-btn', editBook)
+  $(document).on('click', '.close-success', listBooks);
 
 });
