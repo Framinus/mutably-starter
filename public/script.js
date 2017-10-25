@@ -2,7 +2,8 @@ console.log("Sanity Check: JS is working!");
 
 $(document).ready(function () {
 
-  $('.alert').hide();
+  $('.alert-success').hide();
+  $('.alert-danger').hide();
 
   const createBook = (event) => {
     event.preventDefault();
@@ -60,7 +61,8 @@ $(document).ready(function () {
         $('.edit-save').hide();
         $('.title-edit').show();
         $('.delete-btn').show();
-        $('.alert').hide();
+        $('.alert-success').hide();
+        $('.alert-danger').hide();
       })
       .catch(console.error);
   };
@@ -90,16 +92,38 @@ $(document).ready(function () {
       body: JSON.stringify({ title, author, image, date }),
     })
       .then(response => response.json())
-      .then((updatedBook) => {
-        $('.alert').show();
+      .then(() => {
+        $('li').remove()
+        $('.alert-success').show();
       })
       .catch(console.error);
+  }
+
+  const deleteBook = (event) => {
+    event.preventDefault();
+    const id = $('.save-title').attr("data-id");
+    fetch(`https://mutably.herokuapp.com/books/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Accept': 'application/json, text/plain',
+        'Content-type': 'application/json',
+      },
+    })
+    .then(response => response.json())
+    .then(() => {
+      $('li').remove()
+      $('.alert-danger').show();
+    })
+    .catch(console.error);
   }
 
   $('.create-button').on('click', createBook);
   $('.booklist').on('click', listBooks);
   $(document).on('click', '.save-btn', saveBook);
-  $(document).on('click', '.edit-btn', editBook)
+  $(document).on('click', '.edit-btn', editBook);
   $(document).on('click', '.close-success', listBooks);
+  $(document).on('click', '.delete-btn', deleteBook);
+  $(document).on('click', '.fade-delete', listBooks);
+
 
 });
