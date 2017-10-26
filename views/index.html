@@ -8,27 +8,27 @@
     <script type="text/javascript" src="/script.js"></script>
   </head>
   <body class="container">
-    <div class="col-sm-8 col-sm-offset-2">
+    <div class="modal-background closed">
+      <div class="modal-window closed">
+        <p class="close-modal-button">X</p>
+        <h2>Add A Damn Book Here!</h2>
+        <div class="create-form">
+          <form>
+            <input type="text" class="modal-title" name="title" placeholder="Your Book Here">
+            <input type="text" class="modal-author" name="author" placeholder="Author">
+            <input type="text" class="modal-image-url" name="image" placeholder="Image Link">
+            <input type="text" class="modal-release-date" name="releasedate" placeholder="releasedate">
+            <button class="create-button" type="submit">Create</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-10 col-sm-offset-1">
       <nav class="navbar navbar-default">
-        <a class="navbar-brand" href="/">The Reading Rainbow</a>
+        The Reading Rainbow
       </nav>
       <div class="panel panel-default">
-        <div class="panel-heading"><span class="header">Pick up a damn book!<button class="modal-open">Create a book!</button></span></div>
-        <div class="modal-background closed">
-          <div class="modal-window closed">
-            <p class="close-modal-button">X</p>
-            <h2>Add A Damn Book Here!</h2>
-            <div class="create-form">
-              <form>
-                <input type="text" class="modal-title" name="title" placeholder="Your Book Here">
-                <input type="text" class="modal-author" name="author" placeholder="Author">
-                <input type="text" class="modal-image-url" name="image" placeholder="Image Link">
-                <input type="text" class="modal-release-date" name="releasedate" placeholder="releasedate">
-                <button class="create-button" type="submit">Create</button>
-              </form>
-            </div>
-          </div>
-        </div>
+        <div class="panel-heading"><span class="header">Pick up a damn book!</span><span class="booklist">List All Books</span><button class="modal-open">Create a book!</button></span></div>
         <div class="alert alert-success alert-dismissable">
           <a href="#" class="close" data-dismiss="alert" aria-label="close"><button class="close-success">&times;</button></a>
           <strong>Success!</strong>
@@ -37,7 +37,6 @@
           <a href="#" class="close" data-dismiss="alert" aria-label="close"><button class ="fade-delete">&times;</button></a>
           <strong>Deleted!</strong>
         </div>
-        <div class="booklist">List All Books</div>
           <ul class="list-group">
             <!-- your resource items here -->
           </ul>
