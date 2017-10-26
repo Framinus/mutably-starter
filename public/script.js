@@ -91,7 +91,7 @@ $(document).ready(function () {
       .catch(console.error);
   }
 
-  const deleteBook = (event) => {
+  const deleteBook = function (event) {
     event.preventDefault();
     const id = $('.save-title').attr("data-id");
     fetch(`https://mutably.herokuapp.com/books/${id}`, {
@@ -103,7 +103,7 @@ $(document).ready(function () {
     })
       .then(response => response.json())
       .then(() => {
-        $('li').remove()
+        $(this).parent().remove();
         $('.alert-danger').show();
       })
       .catch(console.error);
