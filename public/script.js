@@ -20,28 +20,25 @@ $(document).ready(function () {
       body: JSON.stringify({ title, author, imageUrl, releaseDate }),
     })
       .then(response => response.json())
-      .then((newbook) => {
-        console.log(newbook);
-      })
       .catch(console.error);
   };
 
-  const listBooks = (event) => {
+  const listBooks = function (event) {
     event.preventDefault();
     fetch('https://mutably.herokuapp.com/books', {
       method: 'GET',
     })
       .then(response => response.json())
       .then((booklist) => {
-        console.log(booklist.books);
         booklist.books.map((book) => {
           $('.list-group').append(`
             <li>
             <img class="book-image" src="${book.image}">
 
             <span class="title-edit">
-              <button type="button" class="edit-btn">Edit</button>
-               title: ${book.title}</span>
+              <button type="button" class="edit-btn" data-id="${book._id}">Edit</button>
+                <span class="title-text">title: ${book.title}</span>
+            </span>
 
             <span class="edit-save">
                  <button type="submit" class="save-btn">Save</button>
@@ -63,14 +60,13 @@ $(document).ready(function () {
       .catch(console.error);
   };
 
-  const editBook = (event) => {
-    console.log('edit button is being clicked');
-    $('.title-edit').hide();
-    $('.delete-btn').hide();
-    $('.edit-save').show();
+  const editBook = function () {
+    $(this).parent().hide();
+    $(this).parent().next().next().next().hide();
+    $(this).parent().next().show();
   }
 
-  const saveBook = (event) => {
+  const saveBook = function (event) {
     event.preventDefault();
     const id = $('.save-title').attr("data-id");
     console.log(id);
@@ -88,8 +84,8 @@ $(document).ready(function () {
       body: JSON.stringify({ title, author, image, date }),
     })
       .then(response => response.json())
-      .then(() => {
-        $('li').remove();
+      .then((response) => {
+        $(this).parent().prev().find('.title-text').text(`title:${response.title}`);
         $('.alert-success').show();
       })
       .catch(console.error);
