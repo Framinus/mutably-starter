@@ -14,6 +14,16 @@ button {
   color: #5E405F;
 }
 
+h2 {
+  text-align: center;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  margin: 45px;
+}
+
 .navbar {
   align-items: center;
   background: linear-gradient(to right, #5E405F, #B1CF72);
@@ -53,8 +63,9 @@ button {
 }
 
 .modal-window {
-  background-color: white;
+  background: linear-gradient(to right, #5E405F, #B1CF72);
   border-radius: 5px;
+  color: #fff;
   flex-direction: column;
   height: auto;
   left: 30%;
@@ -64,11 +75,52 @@ button {
   z-index: 2;
 }
 
-.book-image {
-  height: 105px;
-  width: 130px;
+.close-modal-button {
+  cursor: pointer;
+  float: right;
+  font-size: 20px;
+  margin: 10px;
 }
 
+.form-elements {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.modal-input {
+  color: #000;
+  margin: 5px;
+  width: 250px;
+}
+
+.create-button {
+  width: 75px;
+}
+
+.book-image {
+  height: 150px;
+  width: 103px;
+}
+
+.book-info {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Special Elite', cursive;
+  font-size: 20px;
+  justify-content: space-around;
+  padding-left: 10px;
+}
+
+.list-btn {
+  background-color: #5E405F;
+  color: #fff;
+  font-family: "Lucinda Grande", "Helvetica", sans-serif;
+  font-size: 14px;
+  width: 75px;
+}
 
 .display-modal {
   display: flex;
