@@ -34,21 +34,23 @@ $(document).ready(function () {
           $('.list-group').append(`
             <li>
             <img class="book-image" src="${book.image}">
+            <div class="book-info">
+              <span class="title-edit">
+                <button type="button" class="edit-btn list-btn" data-id="${book._id}">Edit</button>
+                  <span class="title-text">TITLE: ${book.title}</span>
+              </span>
 
-            <span class="title-edit">
-              <button type="button" class="edit-btn" data-id="${book._id}">Edit</button>
-                <span class="title-text">title: ${book.title}</span>
-            </span>
+              <span class="edit-save">
+                   <button type="submit" class="save-btn">Save</button>
+                   <input class="save-title" data-id="${book._id}" data-title="${book.title}" data-author="${book.author}" data-image="${book.image}" data-date="${book.releaseDate}" type="text">
+              </span>
 
-            <span class="edit-save">
-                 <button type="submit" class="save-btn">Save</button>
-                 <input class="save-title" data-id="${book._id}" data-title="${book.title}" data-author="${book.author}" data-image="${book.image}" data-date="${book.releaseDate}" type="text">
-            </span>
-            <span class="book-info"> author: ${book.author}
-              release date: ${book.releaseDate}
-            </span>
+              <span class="book-info"> AUTHOR: ${book.author} <br>
+                RELEASE DATE: ${book.releaseDate}
+              </span>
 
-            <button type="button" class="delete-btn">Delete</button>
+              <button type="button" class="delete-btn list-btn">Delete</button>
+            </div>
             </li>`);
         });
         $('.edit-save').hide();
