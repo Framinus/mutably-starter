@@ -107,8 +107,19 @@ $(document).ready(function () {
         $('.alert-danger').show();
       })
       .catch(console.error);
-  }
+  };
 
+  const openModal = () => {
+    $("div").removeClass('closed');
+  };
+
+  const closeModal = () => {
+    $(".modal-window").addClass('closed');
+    $(".modal-background").addClass('closed');
+  };
+
+  $('.modal-open').on('click', openModal);
+  $('.close-modal-button').on('click', closeModal);
   $('.create-button').on('click', createBook);
   $('.booklist').on('click', listBooks);
   $(document).on('click', '.save-btn', saveBook);
@@ -116,5 +127,4 @@ $(document).ready(function () {
   $(document).on('click', '.close-success', listBooks);
   $(document).on('click', '.delete-btn', deleteBook);
   $(document).on('click', '.fade-delete', listBooks);
-
 });

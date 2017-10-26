@@ -1,7 +1,6 @@
 /*Custom styles here*/
 .modal-background {
   background-color: rgba(0, 0, 0, 0.5);
-  display: none;
   height: 100%;
   position: absolute;
   width: 100%;
@@ -11,7 +10,6 @@
 .modal-window {
   background-color: white;
   border-radius: 5px;
-  display: none;
   flex-direction: column;
   height: auto;
   left: 30%;
@@ -29,4 +27,8 @@
 
 .display-modal {
   display: flex;
+}
+
+.closed {
+  display: none;
 }
